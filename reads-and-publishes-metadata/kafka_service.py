@@ -27,7 +27,7 @@ class KafkaManager:
             kay_to_kafka = kay.encode()
             self.topic_name = topic_name
             self.producer.produce(self.topic_name, key=kay_to_kafka, value= value_to_kafka,callback=self.acked)
-            self.producer.poll()
+            self.producer.poll(0.1)
 
             
         except Exception as e:
