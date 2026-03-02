@@ -4,10 +4,13 @@ services:
     build: reads-and-publishes-metadata
     container_name: reads-and-publishes-metadata
     environment:
-      - ABSOLUTE_PATH_TO_DATA=app/data/podcasts ##########!!!!!!!!!
+      - ABSOLUTE_PATH_TO_DATA=/app/data/podcasts/
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-    # volumes_from:
-    #   - 
+    volumes:
+      - type: bind
+        source: C:\Users\yehuda\Desktop\The-Muezzin-Project\data\
+        target: /app/data/
+  
     depends_on:
       kafka:
         condition: service_healthy
@@ -38,3 +41,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+
+volumes:
+  my_data:
+  
